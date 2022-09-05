@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int getValue(char x)
+    {
+        if(x=='I') return 1;
+        if(x=='V') return 5;
+        if(x=='X') return 10;
+        if(x=='L') return 50;
+        if(x=='C') return 100;
+        if(x=='D') return 500;
+        if(x=='M') return 1000;
+        
+        return 0;
+    }
+    int romanToInt(string s) {
+        int curr=0;
+        int next=0;
+        int num =0;
+        
+        for(int i=0;i<s.length();i++)
+        {
+            if(i!=s.length()-1)
+            {
+                curr = getValue(s.at(i));
+                next = getValue(s.at(i+1));
+                
+                if(curr<next)
+                {
+                    num=num+(next-curr);
+                    i++;
+                }
+                else
+                {
+                    num=num+curr;
+                }
+            }
+            else
+            {
+                num = num+getValue(s.at(i));
+            }
+        }
+        
+        return num;
+        
+    }
+};
